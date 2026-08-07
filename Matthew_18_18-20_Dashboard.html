@@ -2149,14 +2149,22 @@ function renderGreekSentence() {
       container.style.textAlign = "left";
   }
 
-  let tooltip = document.createElement("div");
-  tooltip.id = "parsing-tooltip";
-  tooltip.className = "parsing-tooltip";
-  tooltip.style.display = "none";
-  // Reset tooltip direction to ltr so parsing text reads normally
-  tooltip.style.direction = "ltr";
-  tooltip.style.textAlign = "left";
-  container.appendChild(tooltip);
+  let tooltip = document.getElementById("parsing-tooltip");
+  if (!tooltip) {
+      tooltip = document.createElement("div");
+      tooltip.id = "parsing-tooltip";
+      tooltip.className = "parsing-tooltip";
+      tooltip.style.display = "none";
+      tooltip.style.direction = "ltr";
+      tooltip.style.textAlign = "left";
+      tooltip.style.position = "fixed";
+      document.body.appendChild(tooltip);
+
+      document.addEventListener('click', function(event) {
+        if (!event.target.classList.contains('greek-word')) { tooltip.style.display = "none"; }
+      });
+      window.addEventListener('scroll', function() { tooltip.style.display = "none"; }, true);
+  }
 
   parsingData.forEach((w) => {
     if (w.is_verse) {
@@ -2164,19 +2172,22 @@ function renderGreekSentence() {
     }
     if(!w.word) return;
     let span = document.createElement("span"); span.className = "greek-word"; span.innerText = w.word + " ";
-    span.onclick = (e) => showParsing(e, w, container, tooltip); container.appendChild(span);
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!event.target.classList.contains('greek-word')) { tooltip.style.display = "none"; }
+    span.onclick = (e) => showParsing(e, w, tooltip); container.appendChild(span);
   });
 }
-function showParsing(e, data, container, tooltip) {
+function showParsing(e, data, tooltip) {
   tooltip.innerHTML = `<h4>${data.word}</h4><p><strong>원형:</strong> ${data.lemma}</p><p><strong>의미:</strong> ${data.meaning}</p><p><strong>파싱:</strong> ${data.parsing}</p>`;
   tooltip.style.display = "block";
-  const targetRect = e.target.getBoundingClientRect(); const containerRect = container.getBoundingClientRect();
-  tooltip.style.top = (targetRect.bottom - containerRect.top + container.scrollTop + 10) + "px";
-  tooltip.style.left = (targetRect.left - containerRect.left + container.scrollLeft) + "px";
+  const targetRect = e.target.getBoundingClientRect();
+
+  let leftPos = targetRect.left;
+  if (leftPos + 260 > window.innerWidth) { leftPos = window.innerWidth - 270; }
+  let topPos = targetRect.bottom + 10;
+  if (topPos + 150 > window.innerHeight) { topPos = targetRect.top - 160; }
+
+  tooltip.style.top = topPos + "px";
+  tooltip.style.left = Math.max(10, leftPos) + "px";
+  tooltip.style.zIndex = "999999";
   e.stopPropagation();
 }
 setTimeout(renderGreekSentence, 500);
