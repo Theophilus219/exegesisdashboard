@@ -100,6 +100,22 @@
         .rhetorical-node.C { background: #dcfce7; color: #166534; }
         .summary-highlight { background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%); background-repeat: no-repeat; background-size: 100% 40%; background-position: 0 80%; }
         
+        /* Mobile Responsive */
+        @media (max-width: 800px) {
+            body { flex-direction: column; overflow-y: auto; height: auto; display: block; }
+            .sidebar { width: 100%; height: auto; max-height: 250px; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-bottom: 2px solid var(--sidebar-active); padding: 10px 0; }
+            .sidebar h2 { font-size: 1.1rem; padding-bottom: 10px; margin-bottom: 10px; }
+            .nav-category { margin-top: 5px; padding-top: 5px; }
+            .nav-item { padding: 8px 24px; font-size: 0.9rem; }
+            .main-content { padding: 20px 15px; overflow-y: visible; width: 100%; box-sizing: border-box; }
+            .report-card { padding: 20px 15px; margin-bottom: 16px; border-radius: 8px; }
+            .page-header h1 { font-size: 1.6rem; margin-bottom: 20px; }
+            .collapsible-header { font-size: 1.2rem; margin-bottom: 15px; }
+            .interactive-greek-container { padding: 15px 10px; }
+            .comparison-table-wrapper { padding: 5px; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -2123,10 +2139,23 @@ function renderGreekSentence() {
   const container = document.getElementById("greek-sentence-container");
   if(!container) return;
 
+  // Detect Hebrew characters for RTL alignment
+  const isHebText = parsingData.some(w => w.word && /[\u0590-\u05FF]/.test(w.word));
+  if (isHebText) {
+      container.style.direction = "rtl";
+      container.style.textAlign = "right";
+  } else {
+      container.style.direction = "ltr";
+      container.style.textAlign = "left";
+  }
+
   let tooltip = document.createElement("div");
   tooltip.id = "parsing-tooltip";
   tooltip.className = "parsing-tooltip";
   tooltip.style.display = "none";
+  // Reset tooltip direction to ltr so parsing text reads normally
+  tooltip.style.direction = "ltr";
+  tooltip.style.textAlign = "left";
   container.appendChild(tooltip);
 
   parsingData.forEach((w) => {
