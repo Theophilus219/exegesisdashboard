@@ -331,6 +331,98 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
         .rhetorical-node.C { background: #dcfce7; color: #166534; }
         .summary-highlight { background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%); background-repeat: no-repeat; background-size: 100% 40%; background-position: 0 80%; }
 
+        /* Group 2: Greek & Parsing Tooltip */
+        .interactive-greek-container { 
+            background: var(--card-bg, #ffffff); 
+            padding: 24px 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+            border: 1px solid var(--border, #e2e8f0); 
+            margin: 24px 0; 
+            line-height: 2.8; 
+            text-align: left; 
+            position: relative; 
+        }
+        body.dark-mode .interactive-greek-container {
+            background: #0f172a;
+            border-color: #334155;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .verse-marker { 
+            display: block; 
+            font-size: 0.95rem; 
+            color: #94a3b8; 
+            font-weight: 700; 
+            margin: 16px 0 8px 0; 
+            text-align: left; 
+            border-bottom: 1px dashed var(--border, #e2e8f0); 
+            padding-bottom: 4px; 
+        }
+        .verse-marker:first-child { margin-top: 0; }
+        
+        .greek-word { 
+            font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; 
+            font-size: 1.55rem; 
+            color: #1e40af; 
+            cursor: pointer; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
+            transition: all 0.2s; 
+            display: inline-block; 
+            margin: 2px 3px;
+            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            user-select: none;
+        }
+        .greek-word:hover { 
+            background: #dbeafe; 
+            color: #1d4ed8; 
+            border-color: #3b82f6;
+            transform: translateY(-2px); 
+            box-shadow: 0 3px 8px rgba(59, 130, 246, 0.2);
+        }
+        body.dark-mode .greek-word { 
+            color: #93c5fd; 
+            background: rgba(30, 58, 138, 0.25);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        body.dark-mode .greek-word:hover { 
+            background: #1e3a8a; 
+            color: #ffffff; 
+            border-color: #60a5fa;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .parsing-tooltip { 
+            position: fixed; 
+            background: #0f172a !important; 
+            color: #f8fafc !important; 
+            padding: 16px 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.15); 
+            border: 1px solid #334155;
+            z-index: 999999; 
+            width: 320px; 
+            text-align: left; 
+            line-height: 1.5; 
+            display: none;
+            word-break: break-word;
+        }
+        .parsing-tooltip h4 { 
+            font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; 
+            margin: 0 0 10px 0; 
+            color: #60a5fa; 
+            font-size: 1.5rem; 
+            border-bottom: 1px solid #334155; 
+            padding-bottom: 6px;
+        }
+        .parsing-tooltip p { 
+            margin: 5px 0; 
+            font-size: 0.92rem; 
+            color: #cbd5e1; 
+        }
+        .parsing-tooltip strong { color: #f8fafc; }
+
         *, *::before, *::after { box-sizing: border-box; }
         body { 
             font-family: 'SBL Greek Override', 'SBL Hebrew Override', 'Inter', 'Noto Sans KR', sans-serif; 
@@ -3080,126 +3172,92 @@ Clinton E. Arnold는 소아시아 지역에서 출토된 <strong>그리스 마�
 </div></div>
 <div class="report-card"><h2 class="collapsible-header" onclick="toggleCard(this)"><span class="collapse-icon">▼</span> <a name="2-본문-형태소-전수-파싱-데이터베이스-full-text-morphological-parsing-database"></a>2. 본문 형태소 전수 파싱 데이터베이스 (Full Text Morphological Parsing Database)</h2><div class="card-body">
 <p>다음 데이터베이스는 <code>GNT-Morph</code> 데이터베이스 및 전통 수용본문(TR), 안토니아데스 Patriarchal Text(PAT)의 형태론적 데이터를 대조하여 구축한 전수 파싱 테이블이다.<sup id="fnref:p2_1_1"><a class="footnote-ref interactive-fn" onclick="showFootnote(this, event); return false;" onmouseenter="showFootnote(this, event)" href="#fn:p2_1_1">1</a></sup></p>
-<div class="interactive-greek-container" id="greek-sentence-container-87106"></div>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const parsingData = [ {is_verse: true, text: "3:15"},
-{word: "καὶ", lemma: "καί", parsing: "Conjunction (접속사)", meaning: "그리고, 또한"},
-{word: "ἡ", lemma: "ὁ", parsing: "Nominative Feminine Singular (주격 여성 단수)", meaning: "그"},
-{word: "εἰρήνη", lemma: "εἰρήνη", parsing: "Nominative Feminine Singular (주격 여성 단수)", meaning: "평화, 평강"},
-{word: "τοῦ", lemma: "ὁ", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "그"},
-{word: "Χριστοῦ", lemma: "Χριστός", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "그리스도의"},
-{word: "βραβευέτω", lemma: "βραβεύω", parsing: "Present Active Imperative 3rd Person Singular (현재 능동태 명령법 3인칭 단수)", meaning: "다스리게 하라, 심판관이 되게 하라"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에, ~가운데"},
-{word: "ταῖς", lemma: "ὁ", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "그"},
-{word: "καρδίαις", lemma: "καρδία", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "마음들에"},
-{word: "ὑμῶν", lemma: "σύ", parsing: "Genitive Personal 2nd Person Plural (2인칭 복수 인칭대명사 속격)", meaning: "너희의"},
-{word: "εἰς", lemma: "εἰς", parsing: "Preposition + Accusative (대격 지배 전치사)", meaning: "~를 위하여, ~로"},
-{word: "ἣν", lemma: "ὅς", parsing: "Accusative Relative Feminine Singular (대격 여성 단수 관계대명사)", meaning: "그것을 위해"},
-{word: "καὶ", lemma: "καί", parsing: "Adverbial Conjunction (부사적 접속사: \'또한\')", meaning: "또한, 역시"},
-{word: "ἐκλήθητε", lemma: "καλέω", parsing: "Aorist Passive Indicative 2nd Person Plural (부정과거 수동태 직설법 2인칭 복수)", meaning: "부르심을 받았다"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에서"},
-{word: "ἑνὶ", lemma: "εἷς", parsing: "Dative Neuter Singular (여격 중성 단수)", meaning: "한, 하나의"},
-{word: "σώματι", lemma: "σῶμα", parsing: "Dative Neuter Singular (여격 중성 단수)", meaning: "몸 안에서"},
-{word: "καὶ", lemma: "καί", parsing: "Conjunction (접속사)", meaning: "그리고"},
-{word: "εὐχάριστοι", lemma: "εὐχάριστος", parsing: "Nominative Masculine Plural (주격 남성 복수)", meaning: "감사하는 (자)"},
-{word: "γίνεσθε", lemma: "γίνομαι", parsing: "Present Middle/Deponent Imperative 2nd Person Plural (현재 디포넌트/중동태 명령법 2인칭 복수)", meaning: "되라"},
-{is_verse: true, text: "3:16"},
-{word: "ὁ", lemma: "ὁ", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "그"},
-{word: "λόγος", lemma: "λόγος", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "말씀"},
-{word: "τοῦ", lemma: "ὁ", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "그"},
-{word: "Χριστοῦ", lemma: "Χριστός", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "그리스도의"},
-{word: "ἐνοικείτω", lemma: "ἐνοικέω", parsing: "Present Active Imperative 3rd Person Singular (현재 능동태 명령법 3인칭 단수)", meaning: "거하게 하라"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에, ~가운데"},
-{word: "ὑμῖν", lemma: "σύ", parsing: "Dative Personal 2nd Person Plural (2인칭 복수 인칭대명사 여격)", meaning: "너희 안에 / 너희 사이에"},
-{word: "πλουσίως", lemma: "πλουσίως", parsing: "Adverb (부사)", meaning: "풍성하게"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에, ~로"},
-{word: "πάσῃ", lemma: "πᾶς", parsing: "Dative Feminine Singular (여격 여성 단수)", meaning: "모든"},
-{word: "σοφίᾳ", lemma: "σοφία", parsing: "Dative Feminine Singular (여격 여성 단수)", meaning: "지혜로"},
-{word: "διδάσκοντες", lemma: "διδάσκω", parsing: "Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)", meaning: "가르치며"},
-{word: "καὶ", lemma: "καί", parsing: "Conjunction (접속사)", meaning: "그리고"},
-{word: "νουθετοῦντες", lemma: "νουθετέω", parsing: "Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)", meaning: "권면하며"},
-{word: "ἑαυτοὺς", lemma: "ἑαυτοῦ", parsing: "Accusative Reflexive 3rd Person Masculine Plural (3인칭 재귀대명사 대격 남성 복수, 2인칭 상호적 용법)", meaning: "피차를, 서로를"},
-{word: "ψαλμοῖς", lemma: "ψαλμός", parsing: "Dative Masculine Plural (여격 남성 복수)", meaning: "시로"},
-{word: "ὕμνοις", lemma: "ὕμνος", parsing: "Dative Masculine Plural (여격 남성 복수)", meaning: "찬송으로"},
-{word: "ᾠδαῖς", lemma: "ᾠδή", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "노래로"},
-{word: "πνευματικαῖς", lemma: "πνευματικός", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "신령한"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에서, ~함으로"},
-{word: "χάριτι", lemma: "χάρις", parsing: "Dative Feminine Singular (여격 여성 단수)", meaning: "은혜로 / 감사함으로"},
-{word: "ᾄδοντες", lemma: "ᾄδω", parsing: "Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)", meaning: "찬양하며"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에서"},
-{word: "ταῖς", lemma: "ὁ", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "그"},
-{word: "καρδίαις", lemma: "καρδία", parsing: "Dative Feminine Plural (여격 여성 복수)", meaning: "마음들로"},
-{word: "ὑμῶν", lemma: "σύ", parsing: "Genitive Personal 2nd Person Plural (2인칭 복수 인칭대명사 속격)", meaning: "너희의"},
-{word: "τῷ", lemma: "ὁ", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "그"},
-{word: "θεῷ", lemma: "θεός", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "하나님께"},
-{is_verse: true, text: "3:17"},
-{word: "καὶ", lemma: "καί", parsing: "Conjunction (접속사)", meaning: "그리고"},
-{word: "πᾶν", lemma: "πᾶς", parsing: "Accusative Neuter Singular (대격 중성 단수)", meaning: "무엇이든지"},
-{word: "ὅ", lemma: "ὅς", parsing: "Accusative Relative Neuter Singular (대격 중성 단수 관계대명사)", meaning: "~하는 것"},
-{word: "τι", lemma: "τις", parsing: "Accusative Indefinite Neuter Singular (대격 중성 단수 부정대명사)", meaning: "어떤 것"},
-{word: "ἐὰν", lemma: "ἐάν", parsing: "Conditional Particle (조건 불변사)", meaning: "~하든지"},
-{word: "ποιῆτε", lemma: "ποιέω", parsing: "Present Active Subjunctive 2nd Person Plural (현재 능동태 접속법 2인칭 복수)", meaning: "행하든지"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~로"},
-{word: "λόγῳ", lemma: "λόγος", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "말에"},
-{word: "ἢ", lemma: "ἤ", parsing: "Disjunctive Conjunction (선택 접속사)", meaning: "나"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~에"},
-{word: "ἔργῳ", lemma: "ἔργον", parsing: "Dative Neuter Singular (여격 중성 단수)", meaning: "일에"},
-{word: "πάντα", lemma: "πᾶς", parsing: "Accusative Neuter Plural (대격 중성 복수)", meaning: "모든 것을"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~안에서 / ~로"},
-{word: "ὀνόματι", lemma: "ὄνομα", parsing: "Dative Neuter Singular (여격 중성 단수)", meaning: "이름으로"},
-{word: "κυρίου", lemma: "κύριος", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "주"},
-{word: "Ἰησοῦ", lemma: "Ἰησοῦς", parsing: "Genitive Masculine Singular (속격 남성 단수)", meaning: "예수의"},
-{word: "εὐχαριστοῦντες", lemma: "εὐχαριστέω", parsing: "Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)", meaning: "감사하면서"},
-{word: "τῷ", lemma: "ὁ", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "그"},
-{word: "θεῷ", lemma: "θεός", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "하나님"},
-{word: "πατρὶ", lemma: "πατήρ", parsing: "Dative Masculine Singular (여격 남성 단수)", meaning: "아버지께"},
-{word: "δι’", lemma: "διά", parsing: "Preposition + Genitive (속격 지배 전치사)", meaning: "~를 통하여"},
-{word: "αὐτοῦ", lemma: "αὐτός", parsing: "Genitive Personal 3rd Person Masculine Singular (3인칭 남성 단수 인칭대명사 속격)", meaning: "그분을 (그리스도를)"} ];
-  const container = document.getElementById("greek-sentence-container-87106");
-  if(!container) return;
+<div class="interactive-greek-container" style="direction: ltr; text-align: left;">
+    <div style="font-size:0.85rem; font-weight:700; color:var(--primary); margin-bottom:12px; border-bottom:1px solid var(--border); padding-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+        <span>📖 원어 본문 인터랙티브 단어 분석기 (클릭 시 파싱 및 의미 팝업)</span>
+        <span style="font-size:0.75rem; color:#94a3b8; font-weight:normal;">💡 단어를 클릭하면 상세 파싱 카드가 뜹니다</span>
+    </div>
+    <div class="greek-words-wrapper" style="line-height: 2.8;">
+        <div class="verse-marker">📌 3:15</div>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Conjunction (접속사)" data-meaning="그리고, 또한" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="ἡ" data-lemma="ὁ" data-parsing="Nominative Feminine Singular (주격 여성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἡ</span></span>
+<span class="greek-word" data-word="εἰρήνη" data-lemma="εἰρήνη" data-parsing="Nominative Feminine Singular (주격 여성 단수)" data-meaning="평화, 평강" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εἰρήνη</span></span>
+<span class="greek-word" data-word="τοῦ" data-lemma="ὁ" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τοῦ</span></span>
+<span class="greek-word" data-word="Χριστοῦ" data-lemma="Χριστός" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="그리스도의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">Χριστοῦ</span></span>
+<span class="greek-word" data-word="βραβευέτω" data-lemma="βραβεύω" data-parsing="Present Active Imperative 3rd Person Singular (현재 능동태 명령법 3인칭 단수)" data-meaning="다스리게 하라, 심판관이 되게 하라" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">βραβευέτω</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에, ~가운데" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ταῖς" data-lemma="ὁ" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ταῖς</span></span>
+<span class="greek-word" data-word="καρδίαις" data-lemma="καρδία" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="마음들에" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καρδίαις</span></span>
+<span class="greek-word" data-word="ὑμῶν" data-lemma="σύ" data-parsing="Genitive Personal 2nd Person Plural (2인칭 복수 인칭대명사 속격)" data-meaning="너희의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὑμῶν</span></span>
+<span class="greek-word" data-word="εἰς" data-lemma="εἰς" data-parsing="Preposition + Accusative (대격 지배 전치사)" data-meaning="~를 위하여, ~로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εἰς</span></span>
+<span class="greek-word" data-word="ἣν" data-lemma="ὅς" data-parsing="Accusative Relative Feminine Singular (대격 여성 단수 관계대명사)" data-meaning="그것을 위해" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἣν</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Adverbial Conjunction (부사적 접속사: &#39;또한&#39;)" data-meaning="또한, 역시" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="ἐκλήθητε" data-lemma="καλέω" data-parsing="Aorist Passive Indicative 2nd Person Plural (부정과거 수동태 직설법 2인칭 복수)" data-meaning="부르심을 받았다" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐκλήθητε</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에서" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ἑνὶ" data-lemma="εἷς" data-parsing="Dative Neuter Singular (여격 중성 단수)" data-meaning="한, 하나의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἑνὶ</span></span>
+<span class="greek-word" data-word="σώματι" data-lemma="σῶμα" data-parsing="Dative Neuter Singular (여격 중성 단수)" data-meaning="몸 안에서" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">σώματι</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Conjunction (접속사)" data-meaning="그리고" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="εὐχάριστοι" data-lemma="εὐχάριστος" data-parsing="Nominative Masculine Plural (주격 남성 복수)" data-meaning="감사하는 (자)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εὐχάριστοι</span></span>
+<span class="greek-word" data-word="γίνεσθε" data-lemma="γίνομαι" data-parsing="Present Middle/Deponent Imperative 2nd Person Plural (현재 디포넌트/중동태 명령법 2인칭 복수)" data-meaning="되라" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">γίνεσθε</span></span>
+<div class="verse-marker">📌 3:16</div>
+<span class="greek-word" data-word="ὁ" data-lemma="ὁ" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὁ</span></span>
+<span class="greek-word" data-word="λόγος" data-lemma="λόγος" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="말씀" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">λόγος</span></span>
+<span class="greek-word" data-word="τοῦ" data-lemma="ὁ" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τοῦ</span></span>
+<span class="greek-word" data-word="Χριστοῦ" data-lemma="Χριστός" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="그리스도의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">Χριστοῦ</span></span>
+<span class="greek-word" data-word="ἐνοικείτω" data-lemma="ἐνοικέω" data-parsing="Present Active Imperative 3rd Person Singular (현재 능동태 명령법 3인칭 단수)" data-meaning="거하게 하라" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐνοικείτω</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에, ~가운데" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ὑμῖν" data-lemma="σύ" data-parsing="Dative Personal 2nd Person Plural (2인칭 복수 인칭대명사 여격)" data-meaning="너희 안에 / 너희 사이에" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὑμῖν</span></span>
+<span class="greek-word" data-word="πλουσίως" data-lemma="πλουσίως" data-parsing="Adverb (부사)" data-meaning="풍성하게" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πλουσίως</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에, ~로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="πάσῃ" data-lemma="πᾶς" data-parsing="Dative Feminine Singular (여격 여성 단수)" data-meaning="모든" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πάσῃ</span></span>
+<span class="greek-word" data-word="σοφίᾳ" data-lemma="σοφία" data-parsing="Dative Feminine Singular (여격 여성 단수)" data-meaning="지혜로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">σοφίᾳ</span></span>
+<span class="greek-word" data-word="διδάσκοντες" data-lemma="διδάσκω" data-parsing="Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)" data-meaning="가르치며" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">διδάσκοντες</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Conjunction (접속사)" data-meaning="그리고" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="νουθετοῦντες" data-lemma="νουθετέω" data-parsing="Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)" data-meaning="권면하며" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">νουθετοῦντες</span></span>
+<span class="greek-word" data-word="ἑαυτοὺς" data-lemma="ἑαυτοῦ" data-parsing="Accusative Reflexive 3rd Person Masculine Plural (3인칭 재귀대명사 대격 남성 복수, 2인칭 상호적 용법)" data-meaning="피차를, 서로를" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἑαυτοὺς</span></span>
+<span class="greek-word" data-word="ψαλμοῖς" data-lemma="ψαλμός" data-parsing="Dative Masculine Plural (여격 남성 복수)" data-meaning="시로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ψαλμοῖς</span></span>
+<span class="greek-word" data-word="ὕμνοις" data-lemma="ὕμνος" data-parsing="Dative Masculine Plural (여격 남성 복수)" data-meaning="찬송으로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὕμνοις</span></span>
+<span class="greek-word" data-word="ᾠδαῖς" data-lemma="ᾠδή" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="노래로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ᾠδαῖς</span></span>
+<span class="greek-word" data-word="πνευματικαῖς" data-lemma="πνευματικός" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="신령한" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πνευματικαῖς</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에서, ~함으로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="χάριτι" data-lemma="χάρις" data-parsing="Dative Feminine Singular (여격 여성 단수)" data-meaning="은혜로 / 감사함으로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">χάριτι</span></span>
+<span class="greek-word" data-word="ᾄδοντες" data-lemma="ᾄδω" data-parsing="Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)" data-meaning="찬양하며" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ᾄδοντες</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에서" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ταῖς" data-lemma="ὁ" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ταῖς</span></span>
+<span class="greek-word" data-word="καρδίαις" data-lemma="καρδία" data-parsing="Dative Feminine Plural (여격 여성 복수)" data-meaning="마음들로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καρδίαις</span></span>
+<span class="greek-word" data-word="ὑμῶν" data-lemma="σύ" data-parsing="Genitive Personal 2nd Person Plural (2인칭 복수 인칭대명사 속격)" data-meaning="너희의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὑμῶν</span></span>
+<span class="greek-word" data-word="τῷ" data-lemma="ὁ" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τῷ</span></span>
+<span class="greek-word" data-word="θεῷ" data-lemma="θεός" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="하나님께" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">θεῷ</span></span>
+<div class="verse-marker">📌 3:17</div>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Conjunction (접속사)" data-meaning="그리고" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="πᾶν" data-lemma="πᾶς" data-parsing="Accusative Neuter Singular (대격 중성 단수)" data-meaning="무엇이든지" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πᾶν</span></span>
+<span class="greek-word" data-word="ὅ" data-lemma="ὅς" data-parsing="Accusative Relative Neuter Singular (대격 중성 단수 관계대명사)" data-meaning="~하는 것" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὅ</span></span>
+<span class="greek-word" data-word="τι" data-lemma="τις" data-parsing="Accusative Indefinite Neuter Singular (대격 중성 단수 부정대명사)" data-meaning="어떤 것" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τι</span></span>
+<span class="greek-word" data-word="ἐὰν" data-lemma="ἐάν" data-parsing="Conditional Particle (조건 불변사)" data-meaning="~하든지" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐὰν</span></span>
+<span class="greek-word" data-word="ποιῆτε" data-lemma="ποιέω" data-parsing="Present Active Subjunctive 2nd Person Plural (현재 능동태 접속법 2인칭 복수)" data-meaning="행하든지" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ποιῆτε</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="λόγῳ" data-lemma="λόγος" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="말에" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">λόγῳ</span></span>
+<span class="greek-word" data-word="ἢ" data-lemma="ἤ" data-parsing="Disjunctive Conjunction (선택 접속사)" data-meaning="나" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἢ</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~에" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ἔργῳ" data-lemma="ἔργον" data-parsing="Dative Neuter Singular (여격 중성 단수)" data-meaning="일에" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἔργῳ</span></span>
+<span class="greek-word" data-word="πάντα" data-lemma="πᾶς" data-parsing="Accusative Neuter Plural (대격 중성 복수)" data-meaning="모든 것을" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πάντα</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~안에서 / ~로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="ὀνόματι" data-lemma="ὄνομα" data-parsing="Dative Neuter Singular (여격 중성 단수)" data-meaning="이름으로" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὀνόματι</span></span>
+<span class="greek-word" data-word="κυρίου" data-lemma="κύριος" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="주" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">κυρίου</span></span>
+<span class="greek-word" data-word="Ἰησοῦ" data-lemma="Ἰησοῦς" data-parsing="Genitive Masculine Singular (속격 남성 단수)" data-meaning="예수의" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">Ἰησοῦ</span></span>
+<span class="greek-word" data-word="εὐχαριστοῦντες" data-lemma="εὐχαριστέω" data-parsing="Present Active Participle Nominative Masculine Plural (현재 능동태 분사 주격 남성 복수)" data-meaning="감사하면서" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εὐχαριστοῦντες</span></span>
+<span class="greek-word" data-word="τῷ" data-lemma="ὁ" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="그" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τῷ</span></span>
+<span class="greek-word" data-word="θεῷ" data-lemma="θεός" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="하나님" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">θεῷ</span></span>
+<span class="greek-word" data-word="πατρὶ" data-lemma="πατήρ" data-parsing="Dative Masculine Singular (여격 남성 단수)" data-meaning="아버지께" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πατρὶ</span></span>
+<span class="greek-word" data-word="δι’" data-lemma="διά" data-parsing="Preposition + Genitive (속격 지배 전치사)" data-meaning="~를 통하여" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">δι’</span></span>
+<span class="greek-word" data-word="αὐτοῦ" data-lemma="αὐτός" data-parsing="Genitive Personal 3rd Person Masculine Singular (3인칭 남성 단수 인칭대명사 속격)" data-meaning="그분을 (그리스도를)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">αὐτοῦ</span></span>
+    </div>
+</div>
+<details style="margin: 16px 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px;">
+    <summary style="cursor: pointer; font-weight: 600; color: var(--text-heading); font-size: 0.95rem;">📊 원어 전수 파싱 상세 테이블 (Full Parsing Table) 접기/펼치기</summary>
+    <div style="margin-top: 12px; overflow-x: auto;">
 
-  const isHebText = parsingData.some(w => w.word && /[\u0590-\u05FF]/.test(w.word));
-  if (isHebText) {
-      container.style.direction = "rtl";
-      container.style.textAlign = "right";
-  } else {
-      container.style.direction = "ltr";
-      container.style.textAlign = "left";
-  }
-
-  let tooltip = document.getElementById("parsing-tooltip");
-  if (!tooltip) {
-      tooltip = document.createElement("div");
-      tooltip.id = "parsing-tooltip";
-      tooltip.className = "parsing-tooltip";
-      tooltip.style.display = "none";
-      document.body.appendChild(tooltip);
-      document.addEventListener('click', function(event) {
-        if (!event.target.classList.contains('greek-word')) { tooltip.style.display = "none"; }
-      });
-      window.addEventListener('scroll', function() { tooltip.style.display = "none"; }, true);
-  }
-
-  parsingData.forEach((w) => {
-    if (w.is_verse) {
-       let div = document.createElement("div"); div.className = "verse-marker"; div.innerText = w.text; container.appendChild(div); return;
-    }
-    if(!w.word) return;
-    let span = document.createElement("span"); span.className = "greek-word";
-    let displayWord = w.word;
-    if (/[\u0590-\u05FF]/.test(displayWord)) {
-        span.innerHTML = `<span class="sbl-hebrew" dir="rtl">${displayWord}</span> `;
-    } else if (/[\u0370-\u03FF\u1F00-\u1FFF]/.test(displayWord)) {
-        span.innerHTML = `<span class="sbl-greek">${displayWord}</span> `;
-    } else {
-        span.innerText = displayWord + " ";
-    }
-    span.onclick = (e) => showParsing(e, w, tooltip); container.appendChild(span);
-  });
-});
-</script>
-<div style="display:none;">| # | 단어 | 원형(Lemma) | 스트롱 코드 | 품사 | 파싱 상세 (영문 + 한글 병기) | 이문/이형태 (TR/PAT 등) | 사전적 기본 의미 |
+| # | 단어 | 원형(Lemma) | 스트롱 코드 | 품사 | 파싱 상세 (영문 + 한글 병기) | 이문/이형태 (TR/PAT 등) | 사전적 기본 의미 |
 |---|-----|------------|-------------|-----|----------------------------|-----------------------|---------------|
 | **[3:15]** | | | | | | | |
 | 1 | καὶ | καί | G2532 | Conjunction (접속사) | Conjunction (접속사) | 없음 | 그리고, 또한 |
@@ -3273,7 +3331,10 @@ window.addEventListener('DOMContentLoaded', () => {
 | 67 | θεῷ | θεός | G2316 | Noun (명사) | Dative Masculine Singular (여격 남성 단수) | TR/PAT: καὶ (하나님 곧 아버지께) | 하나님 |
 | 68 | πατρὶ | πατήρ | G3962 | Noun (명사) | Dative Masculine Singular (여격 남성 단수) | 없음 | 아버지께 |
 | 69 | δι’ | διά | G1223 | Preposition (전치사) | Preposition + Genitive (속격 지배 전치사) | 없음 | ~를 통하여 |
-| 70 | αὐτοῦ | αὐτός | G846 | Pronoun (대명사) | Genitive Personal 3rd Person Masculine Singular (3인칭 남성 단수 인칭대명사 속격) | 없음 | 그분을 (그리스도를) |</div>
+| 70 | αὐτοῦ | αὐτός | G846 | Pronoun (대명사) | Genitive Personal 3rd Person Masculine Singular (3인칭 남성 단수 인칭대명사 속격) | 없음 | 그분을 (그리스도를) |
+
+    </div>
+</details>
 
 <hr />
 </div></div>
@@ -14142,6 +14203,62 @@ endaligned$</p>
             }
         }
         
+        function showGreekWordParsing(el, event) {
+            if (event) event.stopPropagation();
+            let tooltip = document.getElementById("parsing-tooltip");
+            if (!tooltip) {
+                tooltip = document.createElement("div");
+                tooltip.id = "parsing-tooltip";
+                tooltip.className = "parsing-tooltip";
+                document.body.appendChild(tooltip);
+            }
+            
+            const word = el.getAttribute("data-word") || "";
+            const lemma = el.getAttribute("data-lemma") || "";
+            const parsing = el.getAttribute("data-parsing") || "";
+            const meaning = el.getAttribute("data-meaning") || "";
+            
+            let displayWord = word;
+            let displayLemma = lemma;
+            if (/[\u0590-\u05FF]/.test(displayWord)) {
+                displayWord = `<span class="sbl-hebrew" dir="rtl">${displayWord}</span>`;
+                displayLemma = `<span class="sbl-hebrew" dir="rtl">${displayLemma}</span>`;
+            } else {
+                displayWord = `<span class="sbl-greek">${displayWord}</span>`;
+                displayLemma = `<span class="sbl-greek">${displayLemma}</span>`;
+            }
+            
+            tooltip.innerHTML = `
+                <div style="font-weight:700; color:#60a5fa; font-size:0.82rem; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:4px; display:flex; justify-content:space-between; align-items:center;">
+                    <span>📖 원어 단어 분석 (Parsing)</span>
+                    <span style="font-size:0.85rem; color:#94a3b8; cursor:pointer; padding:0 4px;" onclick="document.getElementById('parsing-tooltip').style.display='none'">✕</span>
+                </div>
+                <h4 style="margin: 4px 0 8px 0; font-size: 1.5rem; color: #93c5fd;">${displayWord}</h4>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">원형:</strong> ${displayLemma}</p>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">의미:</strong> ${meaning}</p>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">파싱:</strong> ${parsing}</p>
+            `;
+            tooltip.style.display = "block";
+            tooltip.style.position = "fixed";
+            tooltip.style.zIndex = "999999";
+            
+            const targetRect = el.getBoundingClientRect();
+            let tooltipWidth = 320;
+            let leftPos = targetRect.left;
+            if (leftPos + tooltipWidth > window.innerWidth - 20) {
+                leftPos = window.innerWidth - tooltipWidth - 20;
+            }
+            if (leftPos < 10) leftPos = 10;
+            
+            let topPos = targetRect.bottom + 10;
+            if (topPos + 220 > window.innerHeight) {
+                topPos = Math.max(10, targetRect.top - 220);
+            }
+            
+            tooltip.style.top = topPos + "px";
+            tooltip.style.left = leftPos + "px";
+        }
+        
         function showParsing(e, data, tooltip) {
             let displayWord = data.word;
             let displayLemma = data.lemma;
@@ -14162,6 +14279,7 @@ endaligned$</p>
             let topPos = targetRect.bottom + 10;
             if (topPos + 150 > window.innerHeight) { topPos = targetRect.top - 160; }
             
+            tooltip.style.position = "fixed";
             tooltip.style.top = topPos + "px";
             tooltip.style.left = Math.max(10, leftPos) + "px";
             tooltip.style.zIndex = "999999";
@@ -14220,12 +14338,18 @@ endaligned$</p>
         window.addEventListener('scroll', function() {
             const fnTooltip = document.getElementById('global-fn-tooltip');
             if (fnTooltip) fnTooltip.style.display = 'none';
+            const parsingTooltip = document.getElementById('parsing-tooltip');
+            if (parsingTooltip) parsingTooltip.style.display = 'none';
         }, true);
         
         document.addEventListener('click', function(e) {
             if(!e.target.closest('.interactive-fn') && !e.target.closest('#global-fn-tooltip')) {
                 const fnTooltip = document.getElementById('global-fn-tooltip');
                 if (fnTooltip) fnTooltip.style.display = 'none';
+            }
+            if(!e.target.closest('.greek-word') && !e.target.closest('#parsing-tooltip')) {
+                const parsingTooltip = document.getElementById('parsing-tooltip');
+                if (parsingTooltip) parsingTooltip.style.display = 'none';
             }
         });
 

@@ -331,6 +331,98 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
         .rhetorical-node.C { background: #dcfce7; color: #166534; }
         .summary-highlight { background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%); background-repeat: no-repeat; background-size: 100% 40%; background-position: 0 80%; }
 
+        /* Group 2: Greek & Parsing Tooltip */
+        .interactive-greek-container { 
+            background: var(--card-bg, #ffffff); 
+            padding: 24px 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); 
+            border: 1px solid var(--border, #e2e8f0); 
+            margin: 24px 0; 
+            line-height: 2.8; 
+            text-align: left; 
+            position: relative; 
+        }
+        body.dark-mode .interactive-greek-container {
+            background: #0f172a;
+            border-color: #334155;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .verse-marker { 
+            display: block; 
+            font-size: 0.95rem; 
+            color: #94a3b8; 
+            font-weight: 700; 
+            margin: 16px 0 8px 0; 
+            text-align: left; 
+            border-bottom: 1px dashed var(--border, #e2e8f0); 
+            padding-bottom: 4px; 
+        }
+        .verse-marker:first-child { margin-top: 0; }
+        
+        .greek-word { 
+            font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; 
+            font-size: 1.55rem; 
+            color: #1e40af; 
+            cursor: pointer; 
+            padding: 3px 8px; 
+            border-radius: 6px; 
+            transition: all 0.2s; 
+            display: inline-block; 
+            margin: 2px 3px;
+            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            user-select: none;
+        }
+        .greek-word:hover { 
+            background: #dbeafe; 
+            color: #1d4ed8; 
+            border-color: #3b82f6;
+            transform: translateY(-2px); 
+            box-shadow: 0 3px 8px rgba(59, 130, 246, 0.2);
+        }
+        body.dark-mode .greek-word { 
+            color: #93c5fd; 
+            background: rgba(30, 58, 138, 0.25);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        body.dark-mode .greek-word:hover { 
+            background: #1e3a8a; 
+            color: #ffffff; 
+            border-color: #60a5fa;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .parsing-tooltip { 
+            position: fixed; 
+            background: #0f172a !important; 
+            color: #f8fafc !important; 
+            padding: 16px 20px; 
+            border-radius: 12px; 
+            box-shadow: 0 16px 36px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.15); 
+            border: 1px solid #334155;
+            z-index: 999999; 
+            width: 320px; 
+            text-align: left; 
+            line-height: 1.5; 
+            display: none;
+            word-break: break-word;
+        }
+        .parsing-tooltip h4 { 
+            font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; 
+            margin: 0 0 10px 0; 
+            color: #60a5fa; 
+            font-size: 1.5rem; 
+            border-bottom: 1px solid #334155; 
+            padding-bottom: 6px;
+        }
+        .parsing-tooltip p { 
+            margin: 5px 0; 
+            font-size: 0.92rem; 
+            color: #cbd5e1; 
+        }
+        .parsing-tooltip strong { color: #f8fafc; }
+
         *, *::before, *::after { box-sizing: border-box; }
         body { 
             font-family: 'SBL Greek Override', 'SBL Hebrew Override', 'Inter', 'Noto Sans KR', sans-serif; 
@@ -2956,87 +3048,53 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
 </div></div>
 <div class="report-card"><h2 class="collapsible-header" onclick="toggleCard(this)"><span class="collapse-icon">▼</span> <a name="2-전수-파싱-데이터베이스-full-parsing-table"></a>2. 전수 파싱 데이터베이스 (Full Parsing Table)</h2><div class="card-body">
 <p>다음 표는 에베소서 4장 4-6절의 34개 단어 전체에 대한 전수 파싱 데이터베이스이다. 모든 문법 용어는 영문 표준 약어와 한국어 문법 용어를 나란히 병기하였으며, 사본학적 형태론 이문(Variants)을 명시하였다.<sup id="fnref:p2_1_6"><a class="footnote-ref interactive-fn" onclick="showFootnote(this, event); return false;" onmouseenter="showFootnote(this, event)" href="#fn:p2_1_6">6</a></sup></p>
-<div class="interactive-greek-container" id="greek-sentence-container-14855"></div>
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-  const parsingData = [ {word: "ἓν", lemma: "εἷς", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "하나 (one)"},
-{word: "σῶμα", lemma: "σῶμα", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "몸, 신체 (body)"},
-{word: "καὶ", lemma: "καί", parsing: "Coordinate Conjunction (등위 접속사)", meaning: "그리고 (and)"},
-{word: "ἓν", lemma: "εἷς", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "하나 (one)"},
-{word: "πνεῦμα", lemma: "πνεῦμα", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "영, 성령 (spirit)"},
-{word: "καθὼς", lemma: "καθώς", parsing: "Comparative Conjunction (비교 접속사)", meaning: "~와 같이 (just as)"},
-{word: "καὶ", lemma: "καί", parsing: "Adverbial Intensifier (부사적 강조)", meaning: "또한, 역시 (also, even)"},
-{word: "ἐκλήθητε", lemma: "καλέω", parsing: "Aorist Passive Indicative 2nd Person Plural (부정과거 수동태 직설법 2인칭 복수)", meaning: "부르심을 받았다 (you were called)"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~ 안에서 (in, at, by)"},
-{word: "μιᾷ", lemma: "εἷς", parsing: "Dative Feminine Singular (여격 여성 단수)", meaning: "하나의 (one)"},
-{word: "ἐλπίδι", lemma: "ἐλπίς", parsing: "Dative Feminine Singular (여격 여성 단수)", meaning: "소망, 희망 (hope)"},
-{word: "τῆς", lemma: "ὁ", parsing: "Genitive Feminine Singular (속격 여성 단수 관사)", meaning: "그 (the)"},
-{word: "κλήσεως", lemma: "κλῆσις", parsing: "Genitive Feminine Singular (속격 여성 단수)", meaning: "부르심, 소명 (calling)"},
-{word: "ὑμῶν", lemma: "σύ", parsing: "Genitive Personal Pronoun 2nd Person Plural (2인칭 복수 속격 인칭대명사)", meaning: "너희의 (of you)"},
-{word: "εἷς", lemma: "εἷς", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "한 분, 하나 (one)"},
-{word: "κύριος", lemma: "κύριος", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "주, 주님 (Lord)"},
-{word: "μία", lemma: "εἷς", parsing: "Nominative Feminine Singular (주격 여성 단수)", meaning: "하나 (one)"},
-{word: "πίστις", lemma: "πίστις", parsing: "Nominative Feminine Singular (주격 여성 단수)", meaning: "믿음, 신앙 (faith)"},
-{word: "ἓν", lemma: "εἷς", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "하나 (one)"},
-{word: "βάπτισμα", lemma: "βάπτισμα", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "세례, 침례 (baptism)"},
-{word: "εἷς", lemma: "εἷς", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "한 분, 하나 (one)"},
-{word: "θεὸς", lemma: "θεός", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "하나님 (God)"},
-{word: "καὶ", lemma: "καί", parsing: "Coordinate Conjunction (등위 접속사)", meaning: "및, 그리고 (and)"},
-{word: "πατὴρ", lemma: "πατήρ", parsing: "Nominative Masculine Singular (주격 남성 단수)", meaning: "아버지 (Father)"},
-{word: "πάντων", lemma: "πᾶς", parsing: "Genitive Masculine Plural (속격 남성/중성 복수)", meaning: "만유의, 모든 이의 (of all)"},
-{word: "ὁ", lemma: "ὁ", parsing: "Nominative Masculine Singular (주격 남성 단수 관사)", meaning: "~이신 분 (the one who)"},
-{word: "ἐπὶ", lemma: "ἐπί", parsing: "Preposition + Genitive (속격 지배 전치사)", meaning: "~ 위에 (over, above)"},
-{word: "πάντων", lemma: "πᾶς", parsing: "Genitive Masculine Plural (속격 남성/중성 복수)", meaning: "만유, 모든 것 (all)"},
-{word: "καὶ", lemma: "καί", parsing: "Coordinate Conjunction (등위 접속사)", meaning: "그리고 (and)"},
-{word: "διὰ", lemma: "διά", parsing: "Preposition + Genitive (속격 지배 전치사)", meaning: "~를 통하여 (through)"},
-{word: "πάντων", lemma: "πᾶς", parsing: "Genitive Masculine Plural (속격 남성/중성 복수)", meaning: "만유, 모든 것 (all)"},
-{word: "καὶ", lemma: "καί", parsing: "Coordinate Conjunction (등위 접속사)", meaning: "그리고 (and)"},
-{word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~ 안에 (in, among)"},
-{word: "πᾶσιν", lemma: "πᾶς", parsing: "Dative Masculine/Neuter Plural (여격 남성/중성 복수)", meaning: "모두, 만유 (all)"} ];
-  const container = document.getElementById("greek-sentence-container-14855");
-  if(!container) return;
+<div class="interactive-greek-container" style="direction: ltr; text-align: left;">
+    <div style="font-size:0.85rem; font-weight:700; color:var(--primary); margin-bottom:12px; border-bottom:1px solid var(--border); padding-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+        <span>📖 원어 본문 인터랙티브 단어 분석기 (클릭 시 파싱 및 의미 팝업)</span>
+        <span style="font-size:0.75rem; color:#94a3b8; font-weight:normal;">💡 단어를 클릭하면 상세 파싱 카드가 뜹니다</span>
+    </div>
+    <div class="greek-words-wrapper" style="line-height: 2.8;">
+        <span class="greek-word" data-word="ἓν" data-lemma="εἷς" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἓν</span></span>
+<span class="greek-word" data-word="σῶμα" data-lemma="σῶμα" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="몸, 신체 (body)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">σῶμα</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Coordinate Conjunction (등위 접속사)" data-meaning="그리고 (and)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="ἓν" data-lemma="εἷς" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἓν</span></span>
+<span class="greek-word" data-word="πνεῦμα" data-lemma="πνεῦμα" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="영, 성령 (spirit)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πνεῦμα</span></span>
+<span class="greek-word" data-word="καθὼς" data-lemma="καθώς" data-parsing="Comparative Conjunction (비교 접속사)" data-meaning="~와 같이 (just as)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καθὼς</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Adverbial Intensifier (부사적 강조)" data-meaning="또한, 역시 (also, even)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="ἐκλήθητε" data-lemma="καλέω" data-parsing="Aorist Passive Indicative 2nd Person Plural (부정과거 수동태 직설법 2인칭 복수)" data-meaning="부르심을 받았다 (you were called)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐκλήθητε</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~ 안에서 (in, at, by)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="μιᾷ" data-lemma="εἷς" data-parsing="Dative Feminine Singular (여격 여성 단수)" data-meaning="하나의 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">μιᾷ</span></span>
+<span class="greek-word" data-word="ἐλπίδι" data-lemma="ἐλπίς" data-parsing="Dative Feminine Singular (여격 여성 단수)" data-meaning="소망, 희망 (hope)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐλπίδι</span></span>
+<span class="greek-word" data-word="τῆς" data-lemma="ὁ" data-parsing="Genitive Feminine Singular (속격 여성 단수 관사)" data-meaning="그 (the)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">τῆς</span></span>
+<span class="greek-word" data-word="κλήσεως" data-lemma="κλῆσις" data-parsing="Genitive Feminine Singular (속격 여성 단수)" data-meaning="부르심, 소명 (calling)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">κλήσεως</span></span>
+<span class="greek-word" data-word="ὑμῶν" data-lemma="σύ" data-parsing="Genitive Personal Pronoun 2nd Person Plural (2인칭 복수 속격 인칭대명사)" data-meaning="너희의 (of you)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὑμῶν</span></span>
+<span class="greek-word" data-word="εἷς" data-lemma="εἷς" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="한 분, 하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εἷς</span></span>
+<span class="greek-word" data-word="κύριος" data-lemma="κύριος" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="주, 주님 (Lord)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">κύριος</span></span>
+<span class="greek-word" data-word="μία" data-lemma="εἷς" data-parsing="Nominative Feminine Singular (주격 여성 단수)" data-meaning="하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">μία</span></span>
+<span class="greek-word" data-word="πίστις" data-lemma="πίστις" data-parsing="Nominative Feminine Singular (주격 여성 단수)" data-meaning="믿음, 신앙 (faith)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πίστις</span></span>
+<span class="greek-word" data-word="ἓν" data-lemma="εἷς" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἓν</span></span>
+<span class="greek-word" data-word="βάπτισμα" data-lemma="βάπτισμα" data-parsing="Nominative Neuter Singular (주격 중성 단수)" data-meaning="세례, 침례 (baptism)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">βάπτισμα</span></span>
+<span class="greek-word" data-word="εἷς" data-lemma="εἷς" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="한 분, 하나 (one)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">εἷς</span></span>
+<span class="greek-word" data-word="θεὸς" data-lemma="θεός" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="하나님 (God)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">θεὸς</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Coordinate Conjunction (등위 접속사)" data-meaning="및, 그리고 (and)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="πατὴρ" data-lemma="πατήρ" data-parsing="Nominative Masculine Singular (주격 남성 단수)" data-meaning="아버지 (Father)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πατὴρ</span></span>
+<span class="greek-word" data-word="πάντων" data-lemma="πᾶς" data-parsing="Genitive Masculine Plural (속격 남성/중성 복수)" data-meaning="만유의, 모든 이의 (of all)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πάντων</span></span>
+<span class="greek-word" data-word="ὁ" data-lemma="ὁ" data-parsing="Nominative Masculine Singular (주격 남성 단수 관사)" data-meaning="~이신 분 (the one who)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ὁ</span></span>
+<span class="greek-word" data-word="ἐπὶ" data-lemma="ἐπί" data-parsing="Preposition + Genitive (속격 지배 전치사)" data-meaning="~ 위에 (over, above)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐπὶ</span></span>
+<span class="greek-word" data-word="πάντων" data-lemma="πᾶς" data-parsing="Genitive Masculine Plural (속격 남성/중성 복수)" data-meaning="만유, 모든 것 (all)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πάντων</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Coordinate Conjunction (등위 접속사)" data-meaning="그리고 (and)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="διὰ" data-lemma="διά" data-parsing="Preposition + Genitive (속격 지배 전치사)" data-meaning="~를 통하여 (through)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">διὰ</span></span>
+<span class="greek-word" data-word="πάντων" data-lemma="πᾶς" data-parsing="Genitive Masculine Plural (속격 남성/중성 복수)" data-meaning="만유, 모든 것 (all)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πάντων</span></span>
+<span class="greek-word" data-word="καὶ" data-lemma="καί" data-parsing="Coordinate Conjunction (등위 접속사)" data-meaning="그리고 (and)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">καὶ</span></span>
+<span class="greek-word" data-word="ἐν" data-lemma="ἐν" data-parsing="Preposition + Dative (여격 지배 전치사)" data-meaning="~ 안에 (in, among)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">ἐν</span></span>
+<span class="greek-word" data-word="πᾶσιν" data-lemma="πᾶς" data-parsing="Dative Masculine/Neuter Plural (여격 남성/중성 복수)" data-meaning="모두, 만유 (all)" onclick="showGreekWordParsing(this, event)"><span class="sbl-greek">πᾶσιν</span></span>
+    </div>
+</div>
+<details style="margin: 16px 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 16px;">
+    <summary style="cursor: pointer; font-weight: 600; color: var(--text-heading); font-size: 0.95rem;">📊 원어 전수 파싱 상세 테이블 (Full Parsing Table) 접기/펼치기</summary>
+    <div style="margin-top: 12px; overflow-x: auto;">
 
-  const isHebText = parsingData.some(w => w.word && /[\u0590-\u05FF]/.test(w.word));
-  if (isHebText) {
-      container.style.direction = "rtl";
-      container.style.textAlign = "right";
-  } else {
-      container.style.direction = "ltr";
-      container.style.textAlign = "left";
-  }
-
-  let tooltip = document.getElementById("parsing-tooltip");
-  if (!tooltip) {
-      tooltip = document.createElement("div");
-      tooltip.id = "parsing-tooltip";
-      tooltip.className = "parsing-tooltip";
-      tooltip.style.display = "none";
-      document.body.appendChild(tooltip);
-      document.addEventListener('click', function(event) {
-        if (!event.target.classList.contains('greek-word')) { tooltip.style.display = "none"; }
-      });
-      window.addEventListener('scroll', function() { tooltip.style.display = "none"; }, true);
-  }
-
-  parsingData.forEach((w) => {
-    if (w.is_verse) {
-       let div = document.createElement("div"); div.className = "verse-marker"; div.innerText = w.text; container.appendChild(div); return;
-    }
-    if(!w.word) return;
-    let span = document.createElement("span"); span.className = "greek-word";
-    let displayWord = w.word;
-    if (/[\u0590-\u05FF]/.test(displayWord)) {
-        span.innerHTML = `<span class="sbl-hebrew" dir="rtl">${displayWord}</span> `;
-    } else if (/[\u0370-\u03FF\u1F00-\u1FFF]/.test(displayWord)) {
-        span.innerHTML = `<span class="sbl-greek">${displayWord}</span> `;
-    } else {
-        span.innerText = displayWord + " ";
-    }
-    span.onclick = (e) => showParsing(e, w, tooltip); container.appendChild(span);
-  });
-});
-</script>
-<div style="display:none;">| # | 단어 | 원형(lemma) | 스트롱 코드 | 품사 | 파싱 상세 (영문 + 한글 병기) | 이문/이형태 (TR/PAT 등) | 사전적 기본 의미 |
+| # | 단어 | 원형(lemma) | 스트롱 코드 | 품사 | 파싱 상세 (영문 + 한글 병기) | 이문/이형태 (TR/PAT 등) | 사전적 기본 의미 |
 |---|-----|------------|-------------|-----|----------------------------|-----------------------|---------------|
 | 1 | ἓν | εἷς | G1520 | Adjective (형용사/수사) | Nominative Neuter Singular (주격 중성 단수) | 없음 | 하나 (one) |
 | 2 | σῶμα | σῶμα | G4983 | Noun (명사) | Nominative Neuter Singular (주격 중성 단수) | 없음 | 몸, 신체 (body) |
@@ -3071,7 +3129,10 @@ window.addEventListener('DOMContentLoaded', () => {
 | 31 | πάντων | πᾶς | G3956 | Adjective (형용사) | Genitive Masculine Plural (속격 남성/중성 복수) | 없음 | 만유, 모든 것 (all) |
 | 32 | καὶ | καί | G2532 | Conjunction (접속사) | Coordinate Conjunction (등위 접속사) | 없음 | 그리고 (and) |
 | 33 | ἐν | ἐν | G1722 | Preposition (전치사) | Preposition + Dative (여격 지배 전치사) | 없음 | ~ 안에 (in, among) |
-| 34 | πᾶσιν | πᾶς | G3956 | Adjective (형용사) | Dative Masculine/Neuter Plural (여격 남성/중성 복수) | TR: πᾶσιν ὑμῖν@@@ΤΑG_ΒLΟCΚ_90@@@ΡΑΤ: πᾶσιν ἡμῖν | 모두, 만유 (all) |</div>
+| 34 | πᾶσιν | πᾶς | G3956 | Adjective (형용사) | Dative Masculine/Neuter Plural (여격 남성/중성 복수) | TR: πᾶσιν ὑμῖν@@@ΤΑG_ΒLΟCΚ_90@@@ΡΑΤ: πᾶσιν ἡμῖν | 모두, 만유 (all) |
+
+    </div>
+</details>
 
 <hr />
 </div></div>
@@ -13795,6 +13856,62 @@ Eph 4:8 (&quot;높은 곳으로 올라가사&quot;) ───&gt; Ps 68:18 (구�
             }
         }
         
+        function showGreekWordParsing(el, event) {
+            if (event) event.stopPropagation();
+            let tooltip = document.getElementById("parsing-tooltip");
+            if (!tooltip) {
+                tooltip = document.createElement("div");
+                tooltip.id = "parsing-tooltip";
+                tooltip.className = "parsing-tooltip";
+                document.body.appendChild(tooltip);
+            }
+            
+            const word = el.getAttribute("data-word") || "";
+            const lemma = el.getAttribute("data-lemma") || "";
+            const parsing = el.getAttribute("data-parsing") || "";
+            const meaning = el.getAttribute("data-meaning") || "";
+            
+            let displayWord = word;
+            let displayLemma = lemma;
+            if (/[\u0590-\u05FF]/.test(displayWord)) {
+                displayWord = `<span class="sbl-hebrew" dir="rtl">${displayWord}</span>`;
+                displayLemma = `<span class="sbl-hebrew" dir="rtl">${displayLemma}</span>`;
+            } else {
+                displayWord = `<span class="sbl-greek">${displayWord}</span>`;
+                displayLemma = `<span class="sbl-greek">${displayLemma}</span>`;
+            }
+            
+            tooltip.innerHTML = `
+                <div style="font-weight:700; color:#60a5fa; font-size:0.82rem; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.15); padding-bottom:4px; display:flex; justify-content:space-between; align-items:center;">
+                    <span>📖 원어 단어 분석 (Parsing)</span>
+                    <span style="font-size:0.85rem; color:#94a3b8; cursor:pointer; padding:0 4px;" onclick="document.getElementById('parsing-tooltip').style.display='none'">✕</span>
+                </div>
+                <h4 style="margin: 4px 0 8px 0; font-size: 1.5rem; color: #93c5fd;">${displayWord}</h4>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">원형:</strong> ${displayLemma}</p>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">의미:</strong> ${meaning}</p>
+                <p style="margin: 4px 0; font-size: 0.92rem;"><strong style="color:#f8fafc;">파싱:</strong> ${parsing}</p>
+            `;
+            tooltip.style.display = "block";
+            tooltip.style.position = "fixed";
+            tooltip.style.zIndex = "999999";
+            
+            const targetRect = el.getBoundingClientRect();
+            let tooltipWidth = 320;
+            let leftPos = targetRect.left;
+            if (leftPos + tooltipWidth > window.innerWidth - 20) {
+                leftPos = window.innerWidth - tooltipWidth - 20;
+            }
+            if (leftPos < 10) leftPos = 10;
+            
+            let topPos = targetRect.bottom + 10;
+            if (topPos + 220 > window.innerHeight) {
+                topPos = Math.max(10, targetRect.top - 220);
+            }
+            
+            tooltip.style.top = topPos + "px";
+            tooltip.style.left = leftPos + "px";
+        }
+        
         function showParsing(e, data, tooltip) {
             let displayWord = data.word;
             let displayLemma = data.lemma;
@@ -13815,6 +13932,7 @@ Eph 4:8 (&quot;높은 곳으로 올라가사&quot;) ───&gt; Ps 68:18 (구�
             let topPos = targetRect.bottom + 10;
             if (topPos + 150 > window.innerHeight) { topPos = targetRect.top - 160; }
             
+            tooltip.style.position = "fixed";
             tooltip.style.top = topPos + "px";
             tooltip.style.left = Math.max(10, leftPos) + "px";
             tooltip.style.zIndex = "999999";
@@ -13873,12 +13991,18 @@ Eph 4:8 (&quot;높은 곳으로 올라가사&quot;) ───&gt; Ps 68:18 (구�
         window.addEventListener('scroll', function() {
             const fnTooltip = document.getElementById('global-fn-tooltip');
             if (fnTooltip) fnTooltip.style.display = 'none';
+            const parsingTooltip = document.getElementById('parsing-tooltip');
+            if (parsingTooltip) parsingTooltip.style.display = 'none';
         }, true);
         
         document.addEventListener('click', function(e) {
             if(!e.target.closest('.interactive-fn') && !e.target.closest('#global-fn-tooltip')) {
                 const fnTooltip = document.getElementById('global-fn-tooltip');
                 if (fnTooltip) fnTooltip.style.display = 'none';
+            }
+            if(!e.target.closest('.greek-word') && !e.target.closest('#parsing-tooltip')) {
+                const parsingTooltip = document.getElementById('parsing-tooltip');
+                if (parsingTooltip) parsingTooltip.style.display = 'none';
             }
         });
 
