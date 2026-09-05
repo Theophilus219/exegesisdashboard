@@ -384,6 +384,243 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
         .verse-marker:first-child { margin-top: 0; }
         .greek-word { font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; font-size: 1.7rem; color: #1e3a8a; cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: all 0.2s; display: inline-block; }
         .greek-word:hover { background: #dbeafe; color: var(--primary); transform: translateY(-2px); }
+        /* Phase 2.1 Verse Cards & Inline Flow */
+        .verse-study-container {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .verse-study-header {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .verse-study-hint {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: normal;
+        }
+        body.dark-mode .verse-study-hint {
+            color: #94a3b8;
+        }
+
+        .verse-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .verse-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border-color: #cbd5e1;
+        }
+        body.dark-mode .verse-card:hover {
+            border-color: #475569;
+        }
+
+        .verse-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+
+        .verse-tag {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(59, 130, 246, 0.08);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        body.dark-mode .verse-tag {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.35);
+            color: #93c5fd;
+        }
+
+        .verse-original-box {
+            margin-bottom: 16px;
+            padding: 14px 18px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        body.dark-mode .verse-original-box {
+            background: #0f172a;
+            border-color: #334155;
+        }
+
+        .verse-original-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        body.dark-mode .verse-original-label {
+            color: #94a3b8;
+        }
+
+        .verse-original-prose {
+            font-family: 'SBL Greek', 'SBL BibLit', 'SBL Greek Override', serif;
+            font-size: 1.45rem;
+            line-height: 2.1;
+            color: #1e3a8a;
+            word-spacing: 2px;
+        }
+        body.dark-mode .verse-original-prose {
+            color: #bfdbfe;
+        }
+        .verse-original-prose.hebrew-prose {
+            font-family: 'SBL Hebrew', 'Ezra SIL', 'SBL Hebrew Override', serif;
+            font-size: 1.6rem;
+            line-height: 2.2;
+            direction: rtl;
+            text-align: right;
+            color: #0f172a;
+        }
+        body.dark-mode .verse-original-prose.hebrew-prose {
+            color: #f1f5f9;
+        }
+
+        .greek-word-inline {
+            display: inline;
+            cursor: pointer;
+            padding: 2px 4px;
+            margin: 0 1px;
+            border-radius: 4px;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            border-bottom: 1.5px dotted rgba(59, 130, 246, 0.4);
+        }
+
+        .greek-word-inline:hover {
+            background: rgba(59, 130, 246, 0.15);
+            color: #1d4ed8;
+            border-bottom-style: solid;
+            border-bottom-color: #2563eb;
+        }
+        body.dark-mode .greek-word-inline {
+            border-bottom-color: rgba(147, 197, 253, 0.4);
+        }
+        body.dark-mode .greek-word-inline:hover {
+            background: rgba(59, 130, 246, 0.28);
+            color: #ffffff;
+            border-bottom-color: #60a5fa;
+        }
+
+        .verse-translations-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .translation-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(241, 245, 249, 0.6);
+            border: 1px solid var(--border);
+            font-size: 0.98rem;
+            line-height: 1.65;
+        }
+        body.dark-mode .translation-row {
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .trans-badge {
+            flex-shrink: 0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+        }
+        .krv-badge {
+            background: #0284c7;
+            color: #ffffff;
+        }
+        .esv-badge {
+            background: #475569;
+            color: #ffffff;
+        }
+        body.dark-mode .esv-badge {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .trans-text {
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+
+        .full-parsing-details {
+            margin: 20px 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 18px;
+        }
+        .full-parsing-details summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-heading);
+            font-size: 0.95rem;
+        }
+        .full-parsing-table-wrapper {
+            margin-top: 14px;
+            overflow-x: auto;
+        }
+        
+        .greek-word { 
+            font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; 
+            font-size: 1.45rem; 
+            color: #1e40af; 
+            cursor: pointer; 
+            padding: 2px 4px; 
+            border-radius: 4px; 
+            transition: all 0.2s; 
+            display: inline;
+        }
+        .greek-word:hover { 
+            background: rgba(59, 130, 246, 0.15); 
+            color: #1d4ed8; 
+            transform: translateY(-2px); 
+            box-shadow: 0 3px 8px rgba(59, 130, 246, 0.2);
+        }
+        body.dark-mode .greek-word { 
+            color: #93c5fd; 
+            background: rgba(30, 58, 138, 0.25);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        body.dark-mode .greek-word:hover { 
+            background: #1e3a8a; 
+            color: #ffffff; 
+            border-color: #60a5fa;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        
         .parsing-tooltip { position: absolute; background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); z-index: 100; width: 250px; text-align: left; line-height: 1.5; }
         .parsing-tooltip::before { content: ''; position: absolute; top: -8px; left: 20px; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 8px solid #1e293b; }
         .parsing-tooltip h4 { font-family: 'SBL Greek', 'SBL Hebrew', 'SBL BibLit', serif; margin: 0 0 10px 0; color: #60a5fa; font-size: 1.4rem; border-bottom: 1px solid #334155; padding-bottom: 6px;}
