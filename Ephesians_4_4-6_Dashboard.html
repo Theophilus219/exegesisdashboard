@@ -283,12 +283,53 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
         body.dark-mode pre { background: #020617; border-color: #1e293b; color: #94a3b8; box-shadow: inset 0 2px 8px rgba(0,0,0,0.5); }
         body.dark-mode code { background: #334155; color: #fca5a5; }
         body.dark-mode pre code { color: #cbd5e1; background: transparent; }
-        body.dark-mode #global-fn-tooltip { background: #1e293b; border-color: #334155; color: #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
-        body.dark-mode .vocab-card { background: #311c12; border-left-color: #ea580c; }
-        body.dark-mode .vocab-card h3 { color: #fdba74; }
+        /* Footnotes Tooltip */
+        .interactive-fn { 
+            cursor: pointer; 
+            color: var(--primary); 
+            font-weight: 700; 
+            padding: 1px 4px; 
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .interactive-fn:hover {
+            background: rgba(59, 130, 246, 0.15);
+            text-decoration: underline;
+        }
+        #global-fn-tooltip { 
+            position: fixed; 
+            background: #ffffff !important; 
+            border: 1px solid #cbd5e1; 
+            box-shadow: 0 16px 36px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.1); 
+            padding: 14px 18px; 
+            border-radius: 10px; 
+            max-width: 460px; 
+            min-width: 280px;
+            font-size: 0.88rem; 
+            line-height: 1.6; 
+            z-index: 999999; 
+            display: none; 
+            color: #1e293b !important; 
+            pointer-events: auto;
+            word-break: break-word;
+        }
+        body.dark-mode #global-fn-tooltip { 
+            background: #1e293b !important; 
+            border-color: #334155; 
+            color: #f1f5f9 !important; 
+            box-shadow: 0 16px 36px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4); 
+        }
 
-        .theme-toggle { position: absolute; top: 30px; right: 40px; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-heading); border-radius: 20px; padding: 6px 14px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 6px; transition: 0.2s; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .theme-toggle:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        /* Rhetorical Tags & Summary Highlights */
+        .rhetorical-tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; color: #fff; margin: 0 4px; }
+        .chiasm { background: #8b5cf6; }
+        .inclusio { background: #10b981; }
+        .rhetorical-node { font-weight: bold; padding: 2px 6px; border-radius: 4px; }
+        .rhetorical-node.A { background: #fee2e2; color: #991b1b; }
+        .rhetorical-node.B { background: #fef3c7; color: #92400e; }
+        .rhetorical-node.C { background: #dcfce7; color: #166534; }
+        .summary-highlight { background: linear-gradient(120deg, #fef08a 0%, #fef08a 100%); background-repeat: no-repeat; background-size: 100% 40%; background-position: 0 80%; }
 
         *, *::before, *::after { box-sizing: border-box; }
         body { 
@@ -343,6 +384,10 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
         }
 
         .theme-toggle {
+            position: relative !important;
+            top: auto !important;
+            right: auto !important;
+            margin: 0 !important;
             background: #1e293b;
             border: 1px solid #334155;
             color: #f8fafc;
@@ -351,12 +396,13 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: 600;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
             transition: all 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             flex-shrink: 0;
+            user-select: none;
         }
         .theme-toggle:hover {
             background: #334155;
@@ -2910,7 +2956,7 @@ var ts=function(){function e(e){return-e.tension*e.x-e.friction*e.v}function t(t
 </div></div>
 <div class="report-card"><h2 class="collapsible-header" onclick="toggleCard(this)"><span class="collapse-icon">▼</span> <a name="2-전수-파싱-데이터베이스-full-parsing-table"></a>2. 전수 파싱 데이터베이스 (Full Parsing Table)</h2><div class="card-body">
 <p>다음 표는 에베소서 4장 4-6절의 34개 단어 전체에 대한 전수 파싱 데이터베이스이다. 모든 문법 용어는 영문 표준 약어와 한국어 문법 용어를 나란히 병기하였으며, 사본학적 형태론 이문(Variants)을 명시하였다.<sup id="fnref:p2_1_6"><a class="footnote-ref interactive-fn" onclick="showFootnote(this, event); return false;" onmouseenter="showFootnote(this, event)" href="#fn:p2_1_6">6</a></sup></p>
-<div class="interactive-greek-container" id="greek-sentence-container-37033"></div>
+<div class="interactive-greek-container" id="greek-sentence-container-14855"></div>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
   const parsingData = [ {word: "ἓν", lemma: "εἷς", parsing: "Nominative Neuter Singular (주격 중성 단수)", meaning: "하나 (one)"},
@@ -2947,7 +2993,7 @@ window.addEventListener('DOMContentLoaded', () => {
 {word: "καὶ", lemma: "καί", parsing: "Coordinate Conjunction (등위 접속사)", meaning: "그리고 (and)"},
 {word: "ἐν", lemma: "ἐν", parsing: "Preposition + Dative (여격 지배 전치사)", meaning: "~ 안에 (in, among)"},
 {word: "πᾶσιν", lemma: "πᾶς", parsing: "Dative Masculine/Neuter Plural (여격 남성/중성 복수)", meaning: "모두, 만유 (all)"} ];
-  const container = document.getElementById("greek-sentence-container-37033");
+  const container = document.getElementById("greek-sentence-container-14855");
   if(!container) return;
 
   const isHebText = parsingData.some(w => w.word && /[\u0590-\u05FF]/.test(w.word));
